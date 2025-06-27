@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pakistan Easy Education 📖</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+      [data-aos] {
+        opacity: 0;
+        transition-property: transform, opacity;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .animated-button {
+        background: #4fb377;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.1s ease;
+      }
+
+      .animated-button:active {
+        transform: scale(0.95);
+      }
+
+      .styled-input {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        margin: 10px 0;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .styled-input:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <div id="navContainer" class="nav-container">
+          <div class="hamburger" id="hamburger">
+            <span class="bar open">☰</span>
+            <span class="bar close">✖</span>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="teachers.html">Teachers</a></li>
+            <li><a href="signup.html">Start Learning</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+          <img
+            src="images/smart.png"
+            alt="Logo"
+            class="logo"
+            width="100px"
+            height="100px"
+          />
+          <div class="search-bar">
+            <button type="submit" onclick="openModal()">Search</button>
+          </div>
+        </div>
+      </nav>
+
+      <section class="picture">
+        <div class="info" data-aos="fade-right">
+          <h1>Pakistan Smart <span class="color">Education</span></h1>
+          <p>
+            Pakistan Easy Education is a free online platform that provides
+            access to quality education for students of all ages. Our mission is
+            to empower students to learn, grow, and succeed by connecting them
+            with teachers online who share their knowledge and expertise.
+          </p>
+          <button id="btn" type="button" class="animated-button">
+            Start Learning
+          </button>
+        </div>
+        <img src="images/paklogo-3.png" alt="Education" data-aos="fade-left" />
+      </section>
+
+      <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" data-aos="fade-down">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <h2>Search a Teacher</h2>
+          <input type="text" placeholder="Enter keyword" class="styled-input" />
+          <input type="text" placeholder="Category" class="styled-input" />
+          <button class="search-btn animated-button">Search</button>
+        </div>
+      </div>
+
+      <section class="about">
+        <div class="about-container">
+          <h2 data-aos="fade-right">About Us</h2>
+          <div class="image">
+            <img
+              src="images/kid.png"
+              alt="Kid taking a online class"
+              width="750px"
+              height="550px"
+              data-aos="zoom-in"
+            />
+            <div class="headline" data-aos="fade-left">
+              <h1 style="font-size: 40px">
+                Connecting Students<br /><span class="center2"
+                  >with Teachers</span
+                >
+              </h1>
+              <p>
+                <strong>Pakistan Easy Education Platform — The #1 hub</strong
+                ><br />
+                where students and teachers connect with ease!<br /><br />
+                <strong
+                  >Tired of running after tuitions?<br />
+                  Frustrated with clashing schedules and endless
+                  searching?</strong
+                ><br /><br />
+                We’re here to change that.<br />
+                With our platform, you can instantly connect with expert
+                teachers,<br />
+                find the perfect time slot, and access personalized learning
+                resources —<br />
+                all from the comfort of your home.<br /><br />
+                1. No more schedule stress.<br />
+                2. Learn anytime, anywhere.<br />
+                3. Make studying simple, flexible, and fun<br /><br />
+                Join thousands of students across Pakistan<br />
+                who are learning the smart way.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="teachers">
+        <h2 data-aos="fade-up">Featured Teachers</h2>
+        <div class="image-2">
+          <div class="headline-2" data-aos="fade-right">
+            <h1>
+              Connecting Teachers<br /><span class="center2"
+                >with Students</span
+              >
+            </h1>
+            <p>
+              <strong>Pakistan Easy Education Platform</strong> – Helping
+              teachers reach students<br />
+              across the country!<br /><br />
+              <strong>Struggling to find students for your subject?</strong
+              ><br />
+              <strong>Tired of fixed hours and location limits?</strong
+              ><br /><br />
+              We’ve made teaching flexible and accessible.<br /><br />
+              Join our platform to connect with eager learners anytime,
+              anywhere.<br /><br />
+              1. Get discovered by students who need your expertise.<br />
+              2. Set your own schedule and teaching style.<br />
+              3. Teach from home with zero hassle.<br /><br />
+              Whether you’re a full-time educator or part-time tutor —<br />
+              start growing your impact today with Pakistan Easy Education
+              Platform.
+            </p>
+          </div>
+          <img
+            src="images/Teacher.png"
+            alt="Teacher teaching an online class"
+            width="750px"
+            height="650px"
+            data-aos="fade-left"
+          />
+        </div>
+      </section>
+
+      <section class="leave-review" id="reviewFormSection">
+        <h2 data-aos="fade-up">Leave a Review</h2>
+        <form id="reviewForm" data-aos="zoom-in">
+          <input
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            class="styled-input"
+            required
+          />
+          <input
+            type="text"
+            id="grade"
+            placeholder="Your Grade (e.g., 9th Grade)"
+            class="styled-input"
+            required
+          />
+          <textarea
+            id="message"
+            placeholder="Write your review..."
+            class="styled-input"
+            required
+          ></textarea>
+          <button type="submit" class="animated-button">Submit Review</button>
+        </form>
+        <p id="reviewStatus" style="margin-top: 10px"></p>
+      </section>
+
+      <section class="testimonials">
+        <h2 data-aos="fade-up">What Students Say Reviews</h2>
+        <div class="testimonial-container">
+          <div class="testimonial">
+            <p data-aos="fade-right">
+              "This platform helped me score A+ in Physics! Thank you!"
+            </p>
+            <span data-aos="fade-right" data-aos-delay="100"
+              >– Ali, 10th Grade</span
+            >
+          </div>
+          <div class="testimonial">
+            <p data-aos="fade-up" data-aos-delay="300">
+              "I found a great teacher for Chemistry. Super easy process."
+            </p>
+            <span data-aos="fade-up" data-aos-delay="300"
+              >– Sana, 9th Grade</span
+            >
+          </div>
+          <div class="testimonial">
+            <p data-aos="fade-left" data-aos-delay="400">
+              "Now I study at my own pace with amazing tutors."
+            </p>
+            <span data-aos="fade-left" data-aos-delay="500"
+              >– Ahmed, 8th Grade</span
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Your site script -->
+    <script src="script.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: false,
+      });
+
+      window.addEventListener("scroll", () => {
+        const animatedElements = document.querySelectorAll("[data-aos]");
+        animatedElements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top > window.innerHeight || rect.bottom < 0) {
+            el.classList.remove("aos-animate");
+          }
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            el.classList.add("aos-animate");
+          }
+        });
+      });
+    </script>
+
+    <div id="toast" class="toast">
+      <span id="toast-message">Review successfully submitted. Thank you!</span>
+      <span class="toast-close" onclick="hideToast()">✖</span>
+    </div>
+    <section class="contact-us">
+      <h2 data-aos="fade-up">Contact Us On Email</h2>
+      <form id="contactForm" data-aos="zoom-in">
+        <input
+          type="text"
+          id="contactName"
+          placeholder="Your Name"
+          class="styled-input"
+          required
+        />
+        <input
+          type="email"
+          id="contactEmail"
+          placeholder="Your Email"
+          class="styled-input"
+          required
+        />
+        <textarea
+          id="contactMessage"
+          placeholder="Your Message..."
+          class="styled-input"
+          required
+        ></textarea>
+        <button type="submit" class="animated-button">Send Message</button>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Contact Us Manually</h3>
+          <p>Email: support@pakeducation.pk</p>
+          <p>Phone: +92 300 1234567</p>
+          <p>Address: Lahore, Pakistan</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="teachers.html">Teachers</a></li>
+            <li><a href="signup.html">Start Learning</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <a href="#">Facebook </a> <span>|</span> <a href="#">Twitter</a>
+          <span>|</span>
+          <a href="#">Instagram </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Pakistan Easy Education. All rights reserved.</p>
+      </div>
+    </footer>
+    <button onclick="scrollToTop()" id="backToTopBtn" title="Back to Top">
+      ↑
+    </button>
+    <script>
+      const backToTopBtn = document.getElementById("backToTopBtn");
+
+      window.onscroll = () => {
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          backToTopBtn.style.display = "block";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      };
+
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+    <!-- Chat Button -->
+    <button id="chatButton" onclick="toggleChat()">💬</button>
+
+    <!-- Chat Box -->
+    <div id="chatBox">
+      <div class="chat-header">
+        <span>Need Help? Chat with us!</span>
+        <span class="close-chat" onclick="toggleChat()">✖</span>
+      </div>
+      <div class="chat-subheader" id="psepBotHeader">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+          alt="Bot"
+          class="bot-avatar"
+        />
+        <div class="bot-text">
+          <div class="bot-name">Psep AI</div>
+          <div class="bot-role">Support Bot</div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <textarea
+          id="userMessage"
+          placeholder="Type a message..."
+          rows="1"
+        ></textarea>
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -3,6 +3,12 @@ import fetch from "node-fetch";
 import cors from "cors";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Setup for __dirname in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config(); // Load .env file
 
@@ -13,10 +19,14 @@ console.log("TO_EMAIL =", process.env.TO_EMAIL);
 console.log("OPENROUTER_API_KEY =", process.env.OPENROUTER_API_KEY?.slice(0, 10) + '...');
 
 const app = express();
+
+// Serve frontend static files from "public" folder
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(cors({
-  origin: "https://psep.byethost12.com", // allow only your frontend
+  origin: "https://psep.byethost12.com", // change as needed
   methods: ["POST"],
-  credentials: false, // or true if you use cookies
+  credentials: false,
   allowedHeaders: ["Content-Type"]
 }));
 
@@ -53,7 +63,6 @@ app.post("/send-email", async (req, res) => {
   console.log("📨 Received contact form:", { name, email, message });
 
   if (!name || !email || !message) {
-    console.log("❌ Missing one or more fields");
     return res.status(400).json({ error: "All fields are required." });
   }
 
@@ -83,6 +92,11 @@ app.post("/send-email", async (req, res) => {
     console.error("❌ Email send failed:", error);
     res.status(500).json({ error: "Email send failed", details: error.message });
   }
+});
+
+// Fallback route for SPA: Serve index.html for unmatched GET routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 /** Server Start **/
