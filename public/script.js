@@ -94,21 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Send to local PHP proxy to bypass CORS and Zapier JSON restriction
-      fetch(
-        "https://d088d9a8-22ae-4c87-9cc3-af4b7959b0dd-00-27guo4y302m4r.sisko.replit.dev/send-email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            message: message,
-          }),
+      // Send to Render backend instead of Replit
+      fetch("https://psep-backend.onrender.com/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      )
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message,
+        }),
+      })
         .then((res) => {
           if (res.ok) {
             showToast("Message sent successfully. We'll reply shortly!");

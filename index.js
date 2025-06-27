@@ -23,18 +23,30 @@ console.log(
 
 const app = express();
 
-// Serve frontend static files from "public" folder
+// Serve static files from public folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// ✅ Allow CORS from your frontend domains
+const allowedOrigins = [
+  "https://psep.byethost12.com",
+  "https://psep-backend.onrender.com",
+];
 
 app.use(
   cors({
-    origin: "https://psep.byethost12.com", // change as needed
-    methods: ["POST"],
-    credentials: false,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   }),
 );
 
+// Parse JSON
 app.use(express.json());
 
 /** Chatbot Endpoint **/
@@ -92,6 +104,7 @@ app.post("/send-email", async (req, res) => {
     });
 
     console.log("✅ Email sent:", info.messageId);
+    res.setHeader("Access-Control-Allow-Origin", "https://psep.byethost12.com");
     res.json({ success: true });
   } catch (error) {
     console.error("❌ Email send failed:", error);
@@ -101,10 +114,10 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Fallback route for SPA: Serve index.html for unmatched GET routes
+// Fallback route for SPA
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-/** Server Start **/
+// Start server
 app.listen(3000, () => console.log("✅ Server running on port 3000"));
