@@ -16,19 +16,24 @@ console.log("🔍 Loaded .env values:");
 console.log("EMAIL_USER =", process.env.EMAIL_USER);
 console.log("EMAIL_PASS =", process.env.EMAIL_PASS);
 console.log("TO_EMAIL =", process.env.TO_EMAIL);
-console.log("OPENROUTER_API_KEY =", process.env.OPENROUTER_API_KEY?.slice(0, 10) + '...');
+console.log(
+  "OPENROUTER_API_KEY =",
+  process.env.OPENROUTER_API_KEY?.slice(0, 10) + "...",
+);
 
 const app = express();
 
 // Serve frontend static files from "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(cors({
-  origin: "https://psep.byethost12.com", // change as needed
-  methods: ["POST"],
-  credentials: false,
-  allowedHeaders: ["Content-Type"]
-}));
+app.use(
+  cors({
+    origin: "https://psep.byethost12.com", // change as needed
+    methods: ["POST"],
+    credentials: false,
+    allowedHeaders: ["Content-Type"],
+  }),
+);
 
 app.use(express.json());
 
@@ -83,14 +88,16 @@ app.post("/send-email", async (req, res) => {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong><br>${message}</p>
-      `
+      `,
     });
 
     console.log("✅ Email sent:", info.messageId);
     res.json({ success: true });
   } catch (error) {
     console.error("❌ Email send failed:", error);
-    res.status(500).json({ error: "Email send failed", details: error.message });
+    res
+      .status(500)
+      .json({ error: "Email send failed", details: error.message });
   }
 });
 
