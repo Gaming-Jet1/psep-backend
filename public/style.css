@@ -1345,3 +1345,21 @@ html, body {
   gap: 5px;
   padding-right: 6px;
 }
+
+.message.bot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.message.bot .message-text {
+  background-color: #e6e6e6;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
+}
