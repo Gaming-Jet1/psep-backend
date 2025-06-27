@@ -221,43 +221,40 @@ function sendMessage() {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   // ✅ CALL your PHP proxy to connect to GPT-4
-  fetch(
-      "https://psep-backend.onrender.com/chat",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
-      },
-    )
-      .then((res) => res.json())
-      .then(async (data) => {
-        console.log("GPT response:", JSON.stringify(data, null, 2));
-        const message = data?.choices?.[0]?.message?.content;
-  
-        if (message) {
-          // Replace typingIndicator's content with actual message
-          typingIndicator.innerHTML = "";
-  
-          const messageText = document.createElement("div");
-          messageText.classList.add("message-text");
-          messageText.textContent = message.trim();
-  
-          const timestamp = document.createElement("div");
-          timestamp.classList.add("timestamp");
-          const now = new Date();
-          timestamp.textContent = now.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          });
-  
-          typingIndicator.appendChild(messageText);
-          typingIndicator.appendChild(timestamp);
-        } else {
-          typingIndicator.textContent =
-            "❌ OpenAI didn't return a proper message.";
-        }
-      });
-  }
+  fetch("https://psep-backend.onrender.com/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: text }),
+  })
+    .then((res) => res.json())
+    .then(async (data) => {
+      console.log("GPT response:", JSON.stringify(data, null, 2));
+      const message = data?.choices?.[0]?.message?.content;
+
+      if (message) {
+        // Replace typingIndicator's content with actual message
+        typingIndicator.innerHTML = "";
+
+        const messageText = document.createElement("div");
+        messageText.classList.add("message-text");
+        messageText.textContent = message.trim();
+
+        const timestamp = document.createElement("div");
+        timestamp.classList.add("timestamp");
+        const now = new Date();
+        timestamp.textContent = now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        typingIndicator.appendChild(messageText);
+        typingIndicator.appendChild(timestamp);
+      } else {
+        typingIndicator.textContent =
+          "❌ OpenAI didn't return a proper message.";
+      }
+    });
+}
 
 function addMessage(sender, text) {
   const messageWrapper = document.createElement("div");
