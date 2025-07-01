@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pakistan Easy Education 📖</title>
     <link rel="stylesheet" href="style.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
@@ -373,39 +374,33 @@
         });
       }
     </script>
-    <!-- Chat Button -->
-    <button id="chatButton" onclick="toggleChat()">💬</button>
+<script>
+const userMessage = document.getElementById("userMessage");
 
-    <!-- Chat Box -->
-    <div id="chatBox">
-      <div class="chat-header">
-        <span>Need Help? Chat with us!</span>
-        <span class="close-chat" onclick="toggleChat()">✖</span>
-      </div>
-      <div class="chat-subheader" id="psepBotHeader">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
-          alt="Bot"
-          class="bot-avatar"
-        />
-        <div class="bot-text">
-          <div class="bot-name">Psep AI</div>
-          <div class="bot-role">Support Bot</div>
-        </div>
-      </div>
-      <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-input">
-        <textarea
-          id="userMessage"
-          placeholder="Type a message..."
-          rows="1"
-        ></textarea>
-        <button onclick="sendMessage()">➤</button>
-      </div>
-    </div>
-  </body>
+userMessage.addEventListener("input", () => {
+  userMessage.style.height = "auto";
+  const newHeight = userMessage.scrollHeight;
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  if (newHeight <= 93) {
+    userMessage.style.overflowY = "hidden";
+    userMessage.style.height = newHeight + "px";
+  } else {
+    userMessage.style.overflowY = "auto";
+    userMessage.style.height = "93px";
+  }
+});
+</script>
+<!-- Start of LiveChat (www.livechat.com) code -->
+<!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19220177;
+    window.__lc.integration_name = "manual_onboarding";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19220177/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
 <script>
   const authButton = document.getElementById("authButton");
 
@@ -431,5 +426,14 @@
       }
     }
   });
+
+  const chatMessages = document.getElementById("chatMessages");
+
+  function scrollToBottomIfOverflowing() {
+    if (chatMessages.scrollHeight > 93) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  }
+
 </script>
 </html>

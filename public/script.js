@@ -226,7 +226,9 @@ function sendMessage() {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   // ✅ CALL your PHP proxy to connect to GPT-4
-  fetch("https://psep-backend.onrender.com/chat", {
+  fetch(
+    "https://d088d9a8-22ae-4c87-9cc3-af4b7959b0dd-00-27guo4y302m4r.sisko.replit.dev/chat",
+    {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text }),
@@ -253,8 +255,9 @@ function sendMessage() {
           minute: "2-digit",
         });
 
-        typingIndicator.appendChild(messageText);
-        typingIndicator.appendChild(timestamp);
+        typingIndicator.appendChild(label);       // 👈 Add label first
+        typingIndicator.appendChild(messageText); // 👈 Then message
+        typingIndicator.appendChild(timestamp);   // 👈 Then timestamp
       } else {
         typingIndicator.textContent =
           "❌ OpenAI didn't return a proper message.";
