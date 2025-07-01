@@ -216,16 +216,24 @@ function sendMessage() {
   // Create typing placeholder
   const typingIndicator = document.createElement("div");
   typingIndicator.classList.add("message", "bot", "typing-indicator");
-  typingIndicator.innerHTML = `AI is typing<span class="dots">.</span><span class="dots">.</span><span class="dots">.</span>`;
+  typingIndicator.innerHTML = `
+    <div class="message-label">Psep AI</div>
+    <div class="message-text typing-bubble">
+      AI is typing<span class="dots">.</span><span class="dots">.</span><span class="dots">.</span>
+    </div>
+  `;
   chatMessages.appendChild(typingIndicator);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   // ✅ CALL your PHP proxy to connect to GPT-4
-  fetch("https://psep-backend.onrender.com/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: text }),
-  })
+  fetch(
+    "https://d088d9a8-22ae-4c87-9cc3-af4b7959b0dd-00-27guo4y302m4r.sisko.replit.dev/chat",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text }),
+    },
+  )
     .then((res) => res.json())
     .then(async (data) => {
       console.log("GPT response:", JSON.stringify(data, null, 2));
@@ -260,16 +268,19 @@ function addMessage(sender, text) {
   const messageWrapper = document.createElement("div");
   messageWrapper.classList.add("message", sender);
 
+  // ✅ Label on top of each message
+  const label = document.createElement("div");
+  label.classList.add("message-label");
+  label.textContent = sender === "user" ? "You" : "Psep AI";
+  messageWrapper.appendChild(label);
+
+  // Message bubble
   const messageText = document.createElement("div");
   messageText.classList.add("message-text");
   messageText.innerHTML = text.replace(/\n/g, "<br>");
-
   messageWrapper.appendChild(messageText);
 
-  const chatMessages = document.getElementById("chatMessages");
-  chatMessages.appendChild(messageWrapper);
-
-  // ➕ Timestamp & Tick: OUTSIDE of green box
+  // Optional meta (timestamp, tick)
   if (sender === "user") {
     const metaWrapper = document.createElement("div");
     metaWrapper.classList.add("meta-wrapper");
@@ -290,5 +301,12 @@ function addMessage(sender, text) {
     messageWrapper.appendChild(metaWrapper);
   }
 
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  const chatMessages = document.getElementById("chatMessages");
+  chatMessages.appendChild(messageWrapper);
+
+  // ✅ Smooth scroll to bottom
+  chatMessages.scrollTo({
+    top: chatMessages.scrollHeight,
+    behavior: "smooth"
+  });
 }

@@ -1,3 +1,12 @@
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      // Not logged in
+      window.location.href = "signup.html";
+    }
+  });
+</script>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -395,4 +404,32 @@
       </div>
     </div>
   </body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script>
+  const authButton = document.getElementById("authButton");
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // Logged in
+      if (authButton) {
+        authButton.textContent = "Logout";
+        authButton.onclick = () => {
+          firebase.auth().signOut().then(() => {
+            showToast("Logged out!");
+            window.location.href = "signup.html";
+          });
+        };
+      }
+    } else {
+      // Not logged in
+      if (authButton) {
+        authButton.textContent = "Signup";
+        authButton.onclick = () => {
+          window.location.href = "signup.html";
+        };
+      }
+    }
+  });
+</script>
 </html>
