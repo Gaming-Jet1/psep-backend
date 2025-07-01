@@ -1437,3 +1437,8 @@ html, body {
   color: #555;
   padding-left: 6px;
 }
+
+.message.bot .message-text {
+  background-color: #e6e6ff; /* light purple */
+  color: #000; /* optional: text color */
+}
